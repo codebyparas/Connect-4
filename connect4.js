@@ -4,6 +4,7 @@ let currPlayer = playerRed;
 
 let gameOver = false;
 let board;
+let currColumns;
 
 let rows = 6;
 let columns = 7;
@@ -14,6 +15,7 @@ window.onload = function(){
 
 function setGame(){
     board = [];
+    currColumns = [5, 5, 5, 5, 5, 5, 5];
 
     for(let r = 0; r < rows; r++){
         let row = [];
@@ -42,8 +44,13 @@ function setPiece(){
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
 
+    r = currColumns[c];
+    if(r < 0){
+        return;
+    }
+
     board[r][c] = currPlayer;
-    let tile = this;
+    let tile = document.getElementById(r.toString() + "-" + c.toString());
     if(currPlayer == playerRed){
         tile.classList.add("red-piece");
         currPlayer = playerYellow;
@@ -52,4 +59,6 @@ function setPiece(){
         currPlayer = playerRed;
     }
 
+    r -= 1;  // Updating the Row Height for the Column
+    currColumns[c] = r;  // Update the Array
 }

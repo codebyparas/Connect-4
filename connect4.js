@@ -46,8 +46,10 @@ function setPiece(){
     let tile = this;
     if(currPlayer == playerRed){
         tile.classList.add("red-piece");
+        currPlayer = playerYellow;
     }else{
-        tile.classList.add("yellow.piece");
+        tile.classList.add("yellow-piece");
+        currPlayer = playerRed;
     }
 
 }
